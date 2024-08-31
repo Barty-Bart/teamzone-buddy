@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="popup.css">
+    <title>TeamZone Buddy</title>
+</head>
+<body>
+    <div id="header">
+        <div id="app-name">TeamZone Buddy</div>
+        <button id="add-member-btn" class="icon-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40">
+                <path fill="white" d="M12 5v14M5 12h14" stroke-width="1.5" stroke="currentColor"/>
+            </svg>
+        </button>
+    </div>
+
+    <div id="content-wrapper">
+        <!-- Timezones Tab -->
+        <div id="tab1" class="tab-content active">
+            <div class="section-title">TEAM MEMBERS</div> <!-- Added title here -->
+            <div id="time-container-tab1">
+                <!-- List of members with their time zones will appear here -->
+            </div>
+        </div>
+    
+        <!-- Convert Tab -->
+        <div id="tab2" class="tab-content">
+            <div class="section-title">CONVERT TIME</div>
+            <div id="convert-time-wrapper">
+                <input type="datetime-local" id="local-time">
+                <button id="convert-btn">Convert</button>
+            </div>
+            <div id="conversion-results">
+                <!-- Conversion results will appear here -->
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Hidden Add Member Page -->
+    <div id="add-member-page" class="hidden">
+        <div class="section-title">ADD MEMBER</div> <!-- Added title here -->
+        <div id="add-member-form">
+            <input type="text" id="name" placeholder="Enter Name">
+            <select id="timezone-select">
+                <option value="" disabled selected>Select Timezone</option>
+                <!-- Time zones will be populated here -->
+            </select>
+            <button id="add-btn">Add</button>
+        </div>
+    </div>
+
+    <div id="tab-bar">
+        <button class="tab-link active" data-tab="tab1">
+            <!-- List Icon SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="37.5" height="37.5" viewBox="0 0 64 64">
+                <g id="surface1">
+                    <path d="M 12.109375 11.460938 C 14.585938 11.460938 16.59375 13.46875 16.59375 15.945312 C 16.59375 18.421875 14.585938 20.429688 12.109375 20.429688 C 9.632812 20.429688 7.625 18.421875 7.625 15.945312 C 7.625 13.46875 9.632812 11.460938 12.109375 11.460938 Z M 12.109375 11.460938 " fill="currentColor" />
+                    <path d="M 22.640625 14.335938 L 52.875 14.335938 C 53.761719 14.335938 54.484375 15.058594 54.484375 15.945312 C 54.484375 16.832031 53.761719 17.554688 52.875 17.554688 L 22.640625 17.554688 C 21.753906 17.554688 21.03125 16.832031 21.03125 15.945312 C 21.03125 15.058594 21.753906 14.335938 22.640625 14.335938 Z M 22.640625 14.335938 " fill="currentColor" />
+                    <path d="M 12.109375 26.492188 C 14.585938 26.492188 16.59375 28.5 16.59375 30.976562 C 16.59375 33.453125 14.585938 35.460938 12.109375 35.460938 C 9.632812 35.460938 7.625 33.453125 7.625 30.976562 C 7.625 28.5 9.632812 26.492188 12.109375 26.492188 Z M 12.109375 26.492188 " fill="currentColor" />
+                    <path d="M 22.640625 29.367188 L 52.875 29.367188 C 53.761719 29.367188 54.484375 30.089844 54.484375 30.976562 C 54.484375 31.863281 53.761719 32.585938 52.875 32.585938 L 22.640625 32.585938 C 21.753906 32.585938 21.03125 31.863281 21.03125 30.976562 C 21.03125 30.089844 21.753906 29.367188 22.640625 29.367188 Z M 22.640625 29.367188 " fill="currentColor" />
+                    <path d="M 12.109375 41.523438 C 14.585938 41.523438 16.59375 43.53125 16.59375 46.007812 C 16.59375 48.484375 14.585938 50.492188 12.109375 50.492188 C 9.632812 50.492188 7.625 48.484375 7.625 46.007812 C 7.625 43.53125 9.632812 41.523438 12.109375 41.523438 Z M 12.109375 41.523438 " fill="currentColor" />
+                    <path d="M 22.640625 44.398438 L 52.875 44.398438 C 53.761719 44.398438 54.484375 45.121094 54.484375 46.007812 C 54.484375 46.894531 53.761719 47.617188 52.875 47.617188 L 22.640625 47.617188 C 21.753906 47.617188 21.03125 46.894531 21.03125 46.007812 C 21.03125 45.121094 21.753906 44.398438 22.640625 44.398438 Z M 22.640625 44.398438 " fill="currentColor" />
+                </g>
+            </svg>
+            <div>Members</div>
+        </button>
+        <button class="tab-link" data-tab="tab2">
+            <!-- Convert Icon SVG -->
+            <svg fill="currentColor" width="37.5" height="37.5" viewBox="-1.5 -2.5 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-refresh-reverse">
+                <path d='M4.859 5.308l1.594-.488a1 1 0 0 1 .585 1.913l-3.825 1.17a1 1 0 0 1-1.249-.665L.794 3.413a1 1 0 1 1 1.913-.585l.44 1.441C5.555.56 10.332-1.035 14.573.703a9.381 9.381 0 0 1 5.38 5.831 1 1 0 1 1-1.905.608A7.381 7.381 0 0 0 4.86 5.308zm12.327 8.195l-1.775.443a1 1 0 1 1-.484-1.94l3.643-.909a.997.997 0 0 1 .61-.08 1 1 0 0 1 .84.75l.968 3.88a1 1 0 0 1-1.94.484l-.33-1.322a9.381 9.381 0 0 1-16.384-1.796l-.26-.634a1 1 0 1 1 1.851-.758l.26.633a7.381 7.381 0 0 0 13.001 1.25z' style="stroke-width:0.5;"/>
+            </svg>
+            <div>Convert</div>
+        </button>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
