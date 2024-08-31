@@ -1,0 +1,344 @@
+body {
+    font-family: Arial, sans-serif;
+    width: 350px;  /* Set the overall width of the app */
+    height: 450px; /* Set a fixed height */
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5; /* Light grey background */
+    color: #333;
+    overflow: hidden; /* Prevent body scroll */
+    display: flex;
+    flex-direction: column;
+}
+
+#app-container {
+    width: 100%;
+    height: 100%; /* Fixed height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures footer sticks to the bottom */
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 0px;
+    height: 48px;
+    width: 100%;
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+#app-name {
+    font-size: 18px;
+    font-weight: normal;
+    margin-left: 10px;
+}
+
+.icon-button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 50%; /* Circle shape by default */
+    width: 55px; /* Adjust button size */
+    height: 55px; /* Adjust button size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.icon-button svg {
+    fill: white; /* Color of the icon */
+    width: 40px; /* Slightly smaller size for the SVG */
+    height: 40px; /* Slightly smaller size for the SVG */
+    stroke-width: 1.5; /* Thinner stroke for the icon */
+    margin-top: 5px;
+}
+
+.icon-button:hover {
+    background-color: #3399ff; /* Lighter shade of blue on hover */
+    border-radius: 0; /* Change to square shape on hover */
+}
+
+#content-wrapper {
+    overflow-y: auto;  /* Scrollable content */
+    flex-grow: 1;
+    width: 100%; /* Ensure the content wrapper is full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+    height: 50px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+input, select, button {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#time-container,
+#member-select {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Align items from the top */
+    gap: 6px; /* Reduced gap between the items */
+    padding: 0 10px; /* Remove padding to avoid overlap with scrollbar */
+    overflow-y: scroll; /* Enable scrolling if content overflows */
+    max-height: calc(100% - 160px); /* Adjust height to leave space for header and footer */
+    width: 100%; /* Ensure the container takes full width */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+#time-container::-webkit-scrollbar,
+#member-select::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+}
+
+#time-container::-webkit-scrollbar-track,
+#member-select::-webkit-scrollbar-track {
+    background: #f5f5f5; /* Match the background color of the app */
+}
+
+#time-container::-webkit-scrollbar-thumb,
+#member-select::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Round the edges of the scrollbar thumb */
+}
+
+#time-container::-webkit-scrollbar-thumb:hover,
+#member-select::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Darker color on hover */
+}
+
+/* Styling for time-zone elements */
+.time-zone, .converted-item {
+    display: flex;
+    justify-content: space-between; /* Space between time details and buttons */
+    align-items: center; /* Center items vertically */
+    background-color: #ffffff; /* White background for blocks */
+    padding: 10px 12px; /* Increase padding for a more spacious look */
+    border-radius: 8px; /* Rounded corners */
+    width: 100%; /* Ensure the blocks use the full width of the container */
+    height: 75px; /* Increase the height to accommodate the stacked layout */
+    box-sizing: border-box; /* Include padding in the width and height */
+    margin: none; /* Remove any margin to eliminate extra space */
+    margin-top: 8px;
+}
+
+.time-details {
+    display: flex;
+    flex-direction: column; /* Stack the content vertically */
+    align-items: flex-start; /* Align text to the left */
+}
+
+.time-details span:first-child {
+    font-weight: bold; /* Make the name bold */
+    font-size: 16px; /* Increase the font size for the name */
+}
+
+.time-details span:nth-child(2) {
+    font-size: 16px; /* Increase the font size for the day/time */
+    margin-top: 2px; /* Add some space between name and day/time */
+}
+
+.time-details span:nth-child(3) {
+    font-size: 14px; /* Increase the font size for the date */
+    margin-top: 2px; /* Add some space between day/time and date */
+    color: #888; /* Lighter color for the date */
+}
+
+.conversion-info {
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.button-container {
+    display: flex;
+    gap: 5px;
+    align-items: center; /* Ensure buttons are centered vertically */
+}
+
+.edit-btn,
+.delete-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Ensure icons are centered within the button */
+}
+
+.edit-btn svg {
+    fill:  none;
+    stroke: #888; /* Default color for the edit icon */
+    transition: fill 0.3s; /* Smooth transition */
+}
+
+.edit-btn:hover {
+    background-color: none;
+    background: none;
+}
+
+.delete-btn:hover {
+    background-color: none;
+    background: none;
+}
+
+.edit-btn:hover svg path {
+    stroke: #007bff; /* Hover stroke color */
+}
+
+.delete-btn:hover svg path {
+    fill: #c9302c; /* Hover fill color for the delete icon */
+}
+
+#tab-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ddd;
+    width: 100%;
+    height: 68px; /* Set a fixed height if needed */
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.section-title {
+    font-size: 14px;
+    font-weight: normal;
+    color: #888; /* Light grey color similar to the example */
+    padding: 5px;
+    margin-left: 10px; /* Adjust for left alignment */
+    margin-bottom: 5px; /* Space below the title */
+    margin-top: 10px;
+}
+
+.tab-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: transparent; /* No background color for normal state */
+    border: none;
+    cursor: pointer;
+    color: #888;
+    font-size: 14px; /* Increased font size */
+    width: 50%; /* Adjust width for even spacing */
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+.tab-link img {
+    width: 30px; /* Increased icon size */
+    height: 30px; /* Increased icon size */
+    margin-bottom: 3px;
+}
+
+.tab-link:hover {
+    background-color: #f0f0f0; /* Slightly darker color on hover */
+    color: #888; /* Keeps the text color the same for inactive tabs */
+}
+
+.tab-link.active {
+    color: #007bff; /* Blue text color when active */
+    background-color: transparent; /* No background color when active */
+    font-size: 14px; /* Ensures active tab has the same font size */
+}
+
+.tab-link.active:hover {
+    background-color: #f0f0f0; /* Slightly darker color on hover */
+    color: #007bff; /* Keep the text blue when hovered */
+}
+
+.hidden {
+    display: none;
+}
+
+#add-member-page {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    justify-content: top;
+    align-items: left;
+    width: 100%;
+    background-color: #f5f5f5; /* Match the app's background color */
+    box-sizing: border-box;
+    height: 50px; /* Ensure it takes up full height minus header and footer */
+}
+
+#add-member-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px 12px; /* Increase padding for a more spacious look */
+    box-sizing: border-box; /* Include padding in the width and height */
+    margin: 0; /* Remove any margin to eliminate extra space */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+/* Convert Time section styling */
+#convert-time-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px 12px; /* Increase padding for a more spacious look */
+    box-sizing: border-box; /* Include padding in the width and height */
+    margin: 0; /* Remove any margin to eliminate extra space */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+/* Default state for the icon (black) */
+.tab-link svg {
+    color: black;
+}
+
+/* Change the color to blue when the tab is active */
+.tab-link.active svg {
+    color: #007bff; /* Blue color */
+}
+
+/* Change the color to blue on hover */
+.tab-link:hover svg {
+    color: #007bff; /* Blue color */
+}
+
+/* Text color changes for tab labels */
+.tab-link.active div, 
+.tab-link:hover div {
+    color: #007bff; /* Blue color for text */
+}
